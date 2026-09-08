@@ -249,6 +249,14 @@ if not multichar then
             TriggerClientEvent("esx_identity:showRegisterIdentity", xPlayer.source)
         end
     end)
+else
+    RegisterNetEvent("esx:playerLoaded", function(_, xPlayer, isNew)
+        -- populates alreadyRegistered[xPlayer.getIdentifier()] from the database, same as
+        -- the non-multichar path above, so an existing character can't be re-registered
+        if not isNew then
+            checkIdentity(xPlayer)
+        end
+    end)
 end
 
 xLib.callback.registerCompat("esx_identity:registerIdentity", function(source, cb, data)
