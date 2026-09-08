@@ -66,8 +66,13 @@ function Tick()
     SetTimeout(60000, Tick)
 end
 
-lastTimestamp = GetUnixTimestamp()
-Tick()
+-- Give other resources a chance to register their jobs via cron:runAt before the
+-- first Tick() runs. cron itself starts before most of its consumers (it has no
+-- dependents to wait on), so calling Tick() synchronously here would always see
+-- an empty cronJobs table and immediately consume the "lastTimestamp == false"
+-- catch-up window for nothing, silently skipping any job that's already due
+-- today by the time it actually gets registered.
+SetTimeout(15000, Tick)
 
 ---@param h number
 ---@param m number
