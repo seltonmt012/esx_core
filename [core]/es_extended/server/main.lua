@@ -539,7 +539,7 @@ if not Config.CustomInventory then
             if not weaponObject.ammo then return end
 
             local ammoLabel = weaponObject.ammo.label
-            if weapon.ammo >= itemCount then
+            if itemCount >= 1 and weapon.ammo >= itemCount then
                 sourceXPlayer.removeWeaponAmmo(itemName, itemCount)
                 targetXPlayer.addWeaponAmmo(itemName, itemCount)
 
