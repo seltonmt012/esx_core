@@ -466,6 +466,10 @@ if not Config.CustomInventory then
             sourceXPlayer.showNotification(TranslateCap("gave_item", itemCount, sourceItem.label, targetXPlayer.name))
             targetXPlayer.showNotification(TranslateCap("received_item", itemCount, sourceItem.label, sourceXPlayer.name))
         elseif itemType == "item_account" then
+            if itemName == "bank" then
+                return
+            end
+
             if itemCount < 1 or sourceXPlayer.getAccount(itemName).money < itemCount then
                 return sourceXPlayer.showNotification(TranslateCap("imp_invalid_amount"))
             end
@@ -576,6 +580,10 @@ if not Config.CustomInventory then
             ESX.CreatePickup("item_standard", itemName, itemCount, pickupLabel, playerId)
             xPlayer.showNotification(TranslateCap("threw_standard", itemCount, xItem.label))
         elseif itemType == "item_account" then
+            if itemName == "bank" then
+                return
+            end
+
             if itemCount == nil or itemCount < 1 then
                 return xPlayer.showNotification(TranslateCap("imp_invalid_amount"))
             end
