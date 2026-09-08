@@ -3,7 +3,11 @@ ESX.Jobs = {}
 ESX.Items = {}
 
 RegisterNetEvent("esx:onPlayerSpawn", function()
-    ESX.Players[source].spawned = true
+    local xPlayer = ESX.Players[source]
+
+    if xPlayer then
+        xPlayer.spawned = true
+    end
 end)
 
 if Config.CustomInventory then
