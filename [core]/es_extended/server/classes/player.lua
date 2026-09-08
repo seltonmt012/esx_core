@@ -471,7 +471,7 @@ function CreateExtendedPlayer(playerId, identifier, ssn, group, accounts, invent
 
             if account then
                 money = account.round and ESX.Math.Round(money) or money
-                if self.accounts[account.index].money - money > self.accounts[account.index].money then
+                if money > self.accounts[account.index].money then
                     error(("Tried To Underflow Account ^5%s^1 For Player ^5%s^1!"):format(accountName, self.playerId))
                     return
                 end
