@@ -27,6 +27,8 @@ function xLib.points.create(coords, distance, hidden, enter, leave, inside)
         resource = GetInvokingResource()
     }
 
+    xLib.points.startLoop()
+
     return handle
 end
 
