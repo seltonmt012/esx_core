@@ -743,6 +743,12 @@ function CreateExtendedPlayer(playerId, identifier, ssn, group, accounts, invent
             return false
         end
 
+        ammoCount = tonumber(ammoCount)
+
+        if not ammoCount or ammoCount < 0 then
+            return false
+        end
+
         weapon.ammo = ammoCount
 
         if weapon.ammo <= 0 then
