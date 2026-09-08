@@ -221,6 +221,13 @@ Core.PlayerFunctionOverrides.OxInventory = {
             end
 
             money = account.round and ESX.Math.Round(money) or money
+
+            local inventory = getOxInventory()
+
+            if inventory.accounts[accountName] and not inventory.SetItem(self.source, accountName, money) then
+                return
+            end
+
             self.accounts[account.index].money = money
 
             self.triggerEvent("esx:setAccountMoney", account)
@@ -231,12 +238,6 @@ Core.PlayerFunctionOverrides.OxInventory = {
                 money,
                 reason
             )
-
-            local inventory = getOxInventory()
-
-            if inventory.accounts[accountName] then
-                inventory.SetItem(self.source, accountName, money)
-            end
         end
     end,
 
@@ -255,6 +256,13 @@ Core.PlayerFunctionOverrides.OxInventory = {
             end
 
             money = account.round and ESX.Math.Round(money) or money
+
+            local inventory = getOxInventory()
+
+            if inventory.accounts[accountName] and not inventory.AddItem(self.source, accountName, money) then
+                return
+            end
+
             self.accounts[account.index].money =
                 self.accounts[account.index].money + money
 
@@ -266,12 +274,6 @@ Core.PlayerFunctionOverrides.OxInventory = {
                 money,
                 reason
             )
-
-            local inventory = getOxInventory()
-
-            if inventory.accounts[accountName] then
-                inventory.AddItem(self.source, accountName, money)
-            end
         end
     end,
 
@@ -290,6 +292,13 @@ Core.PlayerFunctionOverrides.OxInventory = {
             end
 
             money = account.round and ESX.Math.Round(money) or money
+
+            local inventory = getOxInventory()
+
+            if inventory.accounts[accountName] and not inventory.RemoveItem(self.source, accountName, money) then
+                return
+            end
+
             self.accounts[account.index].money =
                 self.accounts[account.index].money - money
 
@@ -301,12 +310,6 @@ Core.PlayerFunctionOverrides.OxInventory = {
                 money,
                 reason
             )
-
-            local inventory = getOxInventory()
-
-            if inventory.accounts[accountName] then
-                inventory.RemoveItem(self.source, accountName, money)
-            end
         end
     end,
 
